@@ -1,36 +1,56 @@
-html{
+.html{
     height:100%;
 }
+
 body{
-    background: url(./PageBG2.jpeg);
+    background-image: url("./images/PageBG2.jpeg");
+    background-position: center center; 
+    background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
 }
-main{
+
+header{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: black;
+    color: white;
+    font-family: Copperplate;
+    font-size: 100px;
+}
+
+.main{
     padding: 30px;
     padding-bottom: 50px;
     min-height:100vh;
+    align-items: center;
+    margin-top: 250px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;   
 }
+
 .loginContainer
 {
+    position: relative;
+    top: 30px;
     width:300px;
     max-width: 300px;
     display: flex;
-    align-items: center;
     justify-content: center;
     margin: 0 auto;
     padding: 2rem;
     box-shadow: black ;
-    border-radius: var(--border-radius);
     background: white;
+    border: 10px double #6d0707;
+    border-radius: 40px;
     padding: 10px;
-
 }
-.payContainer
+
+/* .payContainer
 {
     height:500px;
     width:98%;
-    
     align-items: center;
     justify-content: center;
     margin: 1rem;
@@ -39,28 +59,36 @@ main{
     border-radius: var(--border-radius);
     background: white;
     padding: 10px;
+} */
 
-}
 .form_title{
-    font-size: 30px;
+    font-size: 25px;
+    font-family: Copperplate;
 }
+
 .form_title{
     margin-bottom: 2rem;
     text-align: center;
 }
+
 .form__message{
     text-align: center;
     margin-bottom:1rem;
 }
+
 .form__message--success{
     color: green;
 }
+
 .form__message--error{
     color: red
 }
+
 .form__input-group{
     margin-bottom: 1 rem;
+    font-family: Copperplate;
 }
+
 .form__input{
     display: block;
     width:100%;
@@ -68,44 +96,52 @@ main{
     box-sizing: boder-box;
 
 }
+
 .form__input--error{
     color:red;
     border-color:red; 
 }
+
 .form__input-error-message{
     margin-top: 0.5rem;
     font-size:0.85rem;
     color: red;
 }
+
 .form__button{ 
     width:40%;
     font-weight: bold;
-    color: black;
+    background-color: black;
+    color: white;
+    font-family: Copperplate;
 }
+
 .form__button:active{ 
     transform: scale(0.90);
 }
+
 .form--hidden{
     display:none;
 }
 
-
-#headerRTRLogo{
+/* #headerRTRLogo{
     position: relative;
     max-height: 75px;
     max-width: 150px;
-}
+} */
+
 .links
 {
-
     background-color: black;
     text-align: center;
 }
+
 .no_Underline
 {
     color: rgb(0, 132, 255);
     text-decoration: none;
 }
+
 footer{
     padding:-10px;
     width: 100%;
@@ -115,18 +151,14 @@ footer{
     height: fit-content;
     text-align: center;
     justify-content: center;
-    bottom:0;
-    
+    bottom: 0;
 }
 
 footer p{
-    padding:-10px;
-    font-size: 8px;
+    padding: 2px;
+    font-size: 12px;
     margin: 0 auto;
     text-align: center;
     text-decoration: underline;
-    
-     color: white;
-     
-    
+    color: white;  
 }
