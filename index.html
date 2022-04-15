@@ -25,18 +25,21 @@
     <main>
         <div class="loginContainer">
 
-            <form class="form" id="login">
+            <form onsubmit="return false;" class="form" id="login">
                 <h1 class="form_title">Employee Log in</h1>
                 <div class="form__message form__message--error"></div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input" autofocus="" placeholder="Username/Email">
+                    <input type="text" class="form__input" id="getEmail" autofocus="" placeholder="Username/Email">
+                    <input type="text" class="form__input" id="getPassword" autofocus="" placeholder="Password"> <!--add in hidden password thing again-->
+                    <button class="form__button" onclick="logIn()">Log In</button>
                     <div class="form__input-error-message"></div>
                 </div>
                 <div class="form__input-group">
-                    <input type="password" class="form__input " autofocus="" placeholder="Password"> 
+                    <!-- <input type="text" class="form__input" id="getEmail" autofocus="" placeholder="Username/Email">
+                    <input type="text" class="form__input" id="getPassword" autofocus="" placeholder="Password"> 
+                    <button class="form__button" onclick="logIn()">Log In</button> -->
                     <div class="form__input-error-message"></div>
                 </div>
-                <button class="form__button" type="Enter">Log In</button>
             </form>
 
         </div> 
@@ -52,7 +55,7 @@
          </div>
     </footer>
     
-    <script src="./src/index.js" type="text/JavaScript"></script>
+    <script src="./Resources/scripts/index.js" type="text/JavaScript"></script>
 
 </body>
 
