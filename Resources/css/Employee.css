@@ -1,0 +1,100 @@
+
+#LogoID{
+    max-width: 300px;
+    max-height: 100px;
+}
+#UserLink{
+    position: absolute;
+    right: 10px;  
+    font-size: 20px;
+    bottom: 15px;
+}
+main{
+    justify-content: center;
+    text-align: center;
+}
+.body#blur.active{
+    filter: blur(20px);
+    pointer-events: none;
+    user-select: none;
+}
+#clockM{
+    position:fixed;
+    transform: translate(-50%,-50%);
+    top:40%;
+    left:50%;
+    width: 400px;
+    padding: 50px;
+    box-shadow: 0 5px 30px;
+    background: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    justify-content: center;
+    text-align: center;
+    font-size: 50px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+#clockM.active{
+    top:50%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+#liveClock{
+    font-size: 1000px;
+}
+.tsrButton{
+    padding:5px;
+}
+footer{
+    padding:50px;
+    width: 100%;
+    background-color: rgb(170, 9, 9);
+    position: fixed;
+    clear: both;
+    height: fit-content;
+    text-align: center;
+    justify-content: center;
+    bottom:0;
+    
+}
+
+.employeeSearch{
+    top:40%;
+    font-size: 50px;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+
+}
+
+input[type=text], select {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  input[type=text]:focus {
+    background-color: lightblue;
+  }
