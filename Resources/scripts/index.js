@@ -7,42 +7,27 @@ function logIn(){
     const password = document.getElementById("getPassword").value;
     const getEmployeeApiUrl = baseUrl + "/" + email + "/" + password;
     fetch(getEmployeeApiUrl).then(function(response){ 
-        console.log("made it");
         return response.json();
-    }).then(function(json) { //asyncronous call
-        // console.log(json);
+    }).then(function(json) {
         employeeList=json;
-        console.log(employeeList);
-        //let html=getFavSongs();
-        // document.getElementById("getEmail").value;
-        // document.getElementById("getPassword").value;
-        window.location.href = "./template.html";
+        window.location.href = "./clockInOutEmployee.html";
     }).catch(function(error) {
-        console.log(error);
+        let html=`<div style="color: red; font-family: copperplate;">Incorrect Email and/or Password. Try again!</div>`;
+        document.getElementById("errorMsg").innerHTML=html;
+        //console.log(error);
     });
 }
 
-// function setFormMessage(formElement, type, message)
-// {
-//     const messageElement = form.Element.querySelector(".form__message");
-
-//     messageElement.textContect = message;
-//     messageElement.classList.remove("form__message--success", "form__message--error");
-//     messageElement.classList.add(`form__message--${type}`);
-// }
-
-// document.addEventListener("DOMContentLoaded", () =>{
-//     const loginForm = document.querySelector("#login");
-//     const createAccForm = document.querySelector("#createAcc");
-
-//     document.querySelector("#linkCreateAcc").addEventListener("click", () => {
-
-
-//         loginForm.classList.add("form--hidden");
-//         createAccForm.classList.remove("form--hidden");
-        
-        
-//     })
-
-// });
-
+function checkLogin(){
+    //would be nice to eventually add in to 
+    //let them know if email or password was incorrect or if both were incorrect...
+    if (employeeList.empEmail = null)
+    {
+        html += `<div>Incorrect Email. Try again!</div>`
+    }
+    else
+    {
+        html = "<div>Incorrect Password. Try again!</div>";
+    }
+    return html;
+}

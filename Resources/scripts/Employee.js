@@ -12,7 +12,7 @@ function GetClock(){
     GetClock();
     setInterval(GetClock,1000);
 
-function toggle(){
+    function toggle(){
 
       var blur = document.getElementById('blur');
       blur.classList.toggle('active');
