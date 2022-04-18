@@ -8,15 +8,15 @@
     <link href = "./Resources/css/Employee.css" rel="stylesheet">
     <title>Clock In/Out Employee</title>
 </head>
-<body>
+<body onload="displayEmpID()">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
             <img id ="LogoID" src = "./Resources/images/pLogo.jpg">
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li  id ="UserLink" class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">User Account</a>
+              <li id ="UserLink" class="nav-item">
+                <!-- <a class="nav-link active" id="userID" aria-current="page" href="#">User Account</a> -->
                 <!-- Change User when API calls -->
               </li>
             </ul>

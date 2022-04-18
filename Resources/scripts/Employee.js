@@ -1,3 +1,18 @@
+const employeeUrl = "https://localhost:5001/tidepaykeeping-api/Employee"; //api to reach the employee table in database
+const timelogUrl = "https://localhost:5001/tidepaykeeping-api/Timelog";
+var employeeList = [];
+var myEmployees = {};
+var timelogList = [];
+var myTimelogs = {};
+
+function displayEmpID(){
+    const userString = localStorage.getItem('userID');
+    const userString2 = JSON.parse(userString);
+    console.log(userString2);
+    let html=`<a class="nav-link active" id="userID" aria-current="page" href="#">${userString2}</a>`;
+    document.getElementById("UserLink").innerHTML=html;
+}
+
 function GetClock(){
     
     var d=new Date();

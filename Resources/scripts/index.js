@@ -1,11 +1,13 @@
-const baseUrl = "https://localhost:5001/tidepaykeeping-api/Employee"; //api to reach the employee table in database
+const employeeUrl = "https://localhost:5001/tidepaykeeping-api/Employee"; //api to reach the employee table in database
 var employeeList = [];
 var myEmployees = {};
 
 function logIn(){
     const email = document.getElementById("getEmail").value;
     const password = document.getElementById("getPassword").value;
-    const getEmployeeApiUrl = baseUrl + "/" + email + "/" + password;
+    const getEmployeeApiUrl = employeeUrl + "/" + email + "/" + password;
+    const userString = JSON.stringify(email);
+    localStorage.setItem('userID', userString); //setting this so the next page can display the email the user entered
     fetch(getEmployeeApiUrl).then(function(response){ 
         return response.json();
     }).then(function(json) {
