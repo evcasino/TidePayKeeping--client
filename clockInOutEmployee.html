@@ -34,8 +34,8 @@
       <div id="clockbox" style="font:100pt Arial; color:#000000;" ></div>
 
       <div class = "buttons" >
-      <button id= "clockInB" class="btn btn-secondary btn-lg active" onclick = "toggle()" >Clock In</button>
-      <button id= "clockOutB" class="btn btn-secondary btn-lg active" onclick = "toggle()" >Clock Out</button>
+      <button id= "clockInB" class="btn btn-secondary btn-lg active" onclick = "clockIn()" >Clock In</button>
+      <button id= "clockOutB" class="btn btn-secondary btn-lg active" onclick = "clockOut()" >Clock Out</button>
       </div>
       <div class = "tsrButton">
       <button id= "timeSheetReport" class="btn btn-secondary btn-lg btn-block" >TimeSheet Report</button>
@@ -44,10 +44,11 @@
     </main>
 
    <div id ="clockM">
-    <p class = "pMessage">
-       Time Punch Successful!
-      <p>
-      <button id= "close" class="btn btn-secondary" onclick = "toggle()" >Close</button>
+    <p class = "pMessage">Time Punch Successful!<p>
+    <div id="displayTimeStamp">
+
+    </div>
+    <button id= "close" class="btn btn-secondary" onclick = "toggle()" >Close</button>
     </p>
     
     </p>

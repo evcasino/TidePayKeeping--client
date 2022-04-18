@@ -12,13 +12,33 @@ function logIn(){
         return response.json();
     }).then(function(json) {
         employeeList=json;
-        window.location.href = "./clockInOutEmployee.html";
+        console.log(employeeList);
+        let employee = determineEmpOrManager();
+        if(employee == true)
+        {
+            window.location.href = "./clockInOutEmployee.html";
+        }
+        else
+        {
+            window.location.href = "./clockInOutManager.html";
+        }
     }).catch(function(error) {
         let html=`<div style="color: red; font-family: copperplate;">Incorrect Email and/or Password. Try again!</div>`;
         document.getElementById("errorMsg").innerHTML=html;
-        //console.log(error);
+        console.log(error);
     });
 }
+
+function determineEmpOrManager(){
+    console.log("made it to determine");
+    let employee = true;
+    if (employeeList.managerID == null)
+    {
+        employee = false;
+    }
+    return employee;
+}
+
 
 function checkLogin(){
     //would be nice to eventually add in to 
