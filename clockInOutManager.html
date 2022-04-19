@@ -17,7 +17,6 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li id ="UserLink" class="nav-item">
                 <!-- <a class="nav-link active" id="userID" aria-current="page" href="#">User Account</a> -->
-                <!-- Change User when API calls -->
               </li>
             </ul>
           </div>
@@ -33,9 +32,9 @@
 
       <div id="clockbox" style="font:100pt Arial; color:#000000;" ></div>
 
-      <div class = "buttons" >
-      <button id= "clockInB" class="btn btn-secondary btn-lg active" onclick = "toggle()" >Clock In</button>
-      <button id= "clockOutB" class="btn btn-secondary btn-lg active" onclick = "toggle()" >Clock Out</button>
+      <div class = "buttons">
+      <button id= "clockInB" class="btn btn-secondary btn-lg active" onclick = "clockIn()" >Clock In</button>
+      <button id= "clockOutB" class="btn btn-secondary btn-lg active" onclick = "clockOut()" >Clock Out</button>
       </div>
       <div class = "tsrButton">
       <button id= "timeSheetReport" class="btn btn-secondary btn-lg btn-block" >TimeSheet Report</button>
@@ -43,11 +42,12 @@
 
     </main>
 
-   <div id ="clockM">
-    <p class = "pMessage">
-       Time Punch Successful!
-      <p>
-      <button id= "close" class="btn btn-secondary" onclick = "toggle()" >Close</button>
+    <div id ="clockM">
+    <p class = "pMessage">Time Punch Successful!<p>
+    <div id="displayTimeStamp">
+
+    </div>
+    <button id= "close" class="btn btn-secondary" onclick = "toggle()" >Close</button>
     </p>
     
     </p>
@@ -57,14 +57,14 @@
     <footer>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li  id ="UserLink" class="nav-item" >
-          <a class="nav-link active" aria-current="page" href="#" style="font:22pt Arial; color:#ffffff;" >Log Out</a>
+        <li  id ="UserLink" class="nav-item">
+          <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: black; background-color: white; font-family: copperplate;" onclick="javascript:history.back()">Log Out</button>        
         </li>
 
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="./resources/scripts/Employee.js" type="text/JavaScript"></script>
+    <script src="./resources/scripts/clockInAndOut.js" type="text/JavaScript"></script>
     
 </body>
 </html>

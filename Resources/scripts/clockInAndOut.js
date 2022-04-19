@@ -15,15 +15,15 @@ function displayEmpID(){
 
 function convertEmpEmail(){
     let employeeID = '1';
-    if(userString2 == 'adams@tm.com')
+    if(userString2 == "adams@tm.com")
     {
         employeeID = '1';
     }
-    else if(userString2 == 'bosley@tm.com')
+    else if(userString2 == "bosley@tm.com")
     {
         employeeID = '2';
     }
-    else if(userString2 == 'conners@tm.com')
+    else if(userString2 == "conners@tm.com")
     {
         employeeID = '3';
     }
@@ -31,11 +31,11 @@ function convertEmpEmail(){
     {
         employeeID = '4';
     }
-    else if(userString2 == 'east@tm.com')
+    else if(userString2 == "east@tm.com")
     {
         employeeID = '5';
     }
-    else if(userString2 == 'frederick@tm.com')
+    else if(userString2 == "frederick@tm.com")
     {
         employeeID = '6';
     }
@@ -83,10 +83,11 @@ function GetClock(){
         });
 
         //how do i get the id if it's auto incrementing... but i need to update this timelog later somehow
+        //do a get at the top to see if that empID already has an entry with the trigger value of clockOut bc that means they've already clocked-In and cant clock in again
 
         var today = new Date();
-        var clockIntime = today.getHours() + ":" + today.getMinutes();
-        let html = `<div style="color: rgb(170, 9, 9);">${clockIntime}</div>`;
+        var clockInTime = today.getHours() + ":" + today.getMinutes();
+        let html = `<div style="color: rgb(170, 9, 9);">${clockInTime}</div>`;
         document.getElementById('displayTimeStamp').innerHTML = html;
     }
 
@@ -97,6 +98,8 @@ function GetClock(){
         clockInM.classList.toggle('active');
 
         //need to get the timelog created above to update the clock-out time
+        //do a get to find the timelogID where the empID is the same and the clockOut value is the trigger value of 2012
+        //
 
         console.log("made it to post for clock-Out")
         const putClockOutApiUrl = timelogUrl;
@@ -115,4 +118,9 @@ function GetClock(){
             myTimelogs = sendClockIn;
             console.log(myTimelogs);
         });
+
+        var today = new Date();
+        var clockOutTime = today.getHours() + ":" + today.getMinutes();
+        let html = `<div style="color: rgb(170, 9, 9);">${clockOutTime}</div>`;
+        document.getElementById('displayTimeStamp').innerHTML = html;
 }
