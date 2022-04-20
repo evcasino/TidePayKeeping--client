@@ -124,3 +124,10 @@ function GetClock(){
         let html = `<div style="color: rgb(170, 9, 9);">${clockOutTime}</div>`;
         document.getElementById('displayTimeStamp').innerHTML = html;
 }
+
+function toggle(){
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+    var clockInM = document.getElementById('clockM');
+    clockInM.classList.toggle('active');
+}
