@@ -101,6 +101,14 @@ input[type=text], select {
   input[type=text]:focus {
     background-color: lightblue;
   }
+  .firstRow{
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    text-align: center;
+
+  }
   th {
     height: 50px;
     font-size: 20px;
