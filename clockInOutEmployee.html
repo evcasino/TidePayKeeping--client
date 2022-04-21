@@ -8,7 +8,7 @@
     <link href = "./Resources/css/Employee.css" rel="stylesheet">
     <title>Clock In/Out Employee</title>
 </head>
-<body onload="displayEmpID()">
+<body onload="displayEmpID(); GetClock(); setInterval(GetClock,1000);">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
@@ -42,12 +42,16 @@
 
     </main>
 
+    <div id="displayClockInError">
+
+    </div>
+
     <div id ="clockM">
     <p class = "pMessage">Time Punch Successful!<p>
     <div id="displayTimeStamp">
 
     </div>
-    <button id= "close" class="btn btn-secondary" onclick = "GetClock()">Close</button>
+    <button id= "close" class="btn btn-secondary" onclick = "toggle()">Close</button>
     </p>
     
     </p>
