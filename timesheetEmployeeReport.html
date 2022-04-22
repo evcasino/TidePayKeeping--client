@@ -8,15 +8,15 @@
     <link href = "./Resources/css/Employee.css" rel="stylesheet">
     <title>TimeSheet Employee Report</title>
 </head>
-<body>
-    <header>
+<body onload="displayEmpID(); getTimeLog()">
+    <header >
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
             <img id ="LogoID" src = "./Resources/images/pLogo.jpg">
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li  id ="UserLink" class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">User Account</a>
+               <!-- <a class="nav-link active" aria-current="page" href="#">User Account</a> -->
                 <!-- Change User when API calls -->
               </li>
             </ul>
@@ -31,7 +31,7 @@
        <button id= "nextB" class="btn btn-secondary btn-lg active" >Next</button> 
       </div>
       <!-- When Creating actual table from db, Week Total Box needs to be created.  -->
-      <div class ="firstWeek">
+      <div id ="timeReport">
       <table>        
           <tr>
             <th>Day</th>
@@ -60,34 +60,6 @@
        </table>
       </div>
 
-      <div class ="secondWeek">
-        <table>    
-        <tr>
-          <th>Day</th>
-          <th>Start</th>
-          <th>End</th>
-          <th>Total</th>
-        </tr>
-        <tr>
-          <td>Test Data</td>
-          <td>Test Data</td>
-          <td>Test Data</td>
-          <td>Test Data</td>
-        </tr>
-        <tr>
-          <td>Test Data</td>
-          <td>Test Data</td>
-          <td>Test Data</td>
-          <td>Test Data</td>
-        </tr>
-        <tr class = "totalRow">
-          <td>Test Data</td>
-          <td>Test Data</td>
-          <td>Test Data</td>
-          <td>Test Data</td>
-        </tr>
-     </table>
-    </div>
 
    </main>
 
@@ -101,7 +73,9 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="./resources/scripts/Employee.js" type="text/JavaScript"></script>
+    
+    <script src="./resources/scripts/TimeReport.js" type="text/JavaScript"></script>
+    
     
 </body>
 </html>
