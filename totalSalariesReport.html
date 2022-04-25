@@ -8,7 +8,7 @@
     <link href = "./Resources/css/Manager.css" rel="stylesheet">
     <title>Total Salaries Report</title>
 </head>
-<body>
+<body onload="displayEmpID()">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
@@ -16,7 +16,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li  id ="UserLink" class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">User Account</a>
+                <!-- <a class="nav-link active" aria-current="page" href="#">User Account</a> -->
                 <!-- Change User when API calls -->
               </li>
             </ul>
@@ -81,13 +81,13 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li  id ="UserLink" class="nav-item" >
-          <a class="nav-link active" aria-current="page" href="#" style="font:22pt Arial; color:#ffffff;" >Log Out</a>
+          <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: black; background-color: white; font-family: copperplate;" onclick="logOutMgr()">Log Out</button>        
         </li>
 
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="./resources/scripts/Employee.js" type="text/JavaScript"></script>
+    <script src="./resources/scripts/Manager.js" type="text/JavaScript"></script>
     <!-- Change JS to manager if necessary -->
     
 </body>

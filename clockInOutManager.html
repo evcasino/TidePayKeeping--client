@@ -8,7 +8,7 @@
     <link href = "./Resources/css/Manager.css" rel="stylesheet">
     <title>Clock In/Out Manager</title>
 </head>
-<body onload="displayEmpID()">
+<body onload="displayEmpID(); GetClock(); setInterval(GetClock,1000);">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
@@ -37,16 +37,18 @@
       <button id= "clockOutB" class="btn btn-secondary btn-lg active" onclick = "clockOut()" style="height: 50px; width:130px;">Clock Out</button>
       </div>
       <div class = "mgrDrop">
-        <select name = "Reports">
-          <option  disabled selected style="font: 10pt Arial; color:#000000;">Reports:</option>
-          
-          <option value="eInfo">Employee Info</option>
-          <option value="history">History</option>
-          <option value="dataChart">Data Chart</option>
-          <option value="salaryOwed">Salary Owed</option>
+        <select name = "Reports" id="dropdownList" onchange="redirectManager(value)">
+          <option disabled selected style="font: 10pt Arial; color:#000000;">Reports:</option>
+          <option value="1">Employee Information</option>
+          <option value="2">History of Employee Hours</option>
+          <option value="3">Bar Chart</option>
+          <option value="4">Total Salaries Owed</option>
         </select>
         <br>
         <input type="submit" value="Submit" class="btn btn-secondary btn-lg active">
+      </div>
+      <div id="displayErrorChoice">
+
       </div>
 
     </main>
@@ -64,13 +66,16 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li  id ="UserLink" class="nav-item">
-          <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: black; background-color: white; font-family: copperplate;" onclick="javascript:history.back()">Log Out</button>        
+          <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: black; background-color: white; font-family: copperplate;" onclick="logOutMgr()">Log Out</button>        
         </li>
 
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="./resources/scripts/clockInAndOut.js" type="text/JavaScript"></script>
+    <script src="./Resources/scripts/clockInAndOut.js" type="text/JavaScript"></script>
+    <script src="./Resources/scripts/Manager.js" type="text/JavaScript"></script>
+    <script src="./Resources/scripts/timesheetReport.js" type="text/JavaScript"></script>
+
     
 </body>
 </html>

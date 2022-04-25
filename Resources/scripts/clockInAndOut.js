@@ -4,7 +4,7 @@ var employeeList = [];
 var myEmployees = {};
 var timelogList = [];
 var myTimelogs = {};
-const userString = localStorage.getItem('userID');
+const userString = sessionStorage.getItem('userID');
 const userString2 = JSON.parse(userString);
 var employeeID;
 
@@ -88,7 +88,6 @@ function clockIn(){
         console.log(Error);
         return timelogList;
     }
-         
 }
 
 function postClockIn(employeeID){
@@ -186,4 +185,6 @@ function clockOut(){
 
 }
 
-
+function timesheetReport(){
+    window.location.href = "./timesheetEmployeeReport.html";
+}
