@@ -60,39 +60,41 @@ function convertEmpEmail(){
     return employeeID;
 }
 
-// function checkOpenTimelogs(){
-//     const clockOut = '2012-12-21 03:00:00';
-//     const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
-//     fetch(getClockInsUrl).then(function(response){ 
-//         return response.json();
-//     }).then(function(json) {
-//         timelogList=json;
-//         console.log(timelogList);
-//     }).catch(function(error) {
-//         console.log(error);
-//     });
-// }
-
 function clockIn(){
 
     let employeeID = convertEmpEmail();
-    console.log(employeeID);
+    console.log("this is the empl id: " + employeeID);
 
-    //first, checking that this user hasn't clock-in already
-    const clockOut = '2012-12-21 03:00:00';
-    const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
-    fetch(getClockInsUrl).then(function(response){ 
-        return response.json();
-    }).then(function(json) {
-        timelogList=json;
-        console.log(timelogList);
-    }).catch(function(error) {
-        console.log(error);
-    });
-    
-    //now, we can create a new timelog entry if we've determined there are no open clock-ins for this user
-    if(timelogList = null)
+    try{
+        console.log("in the try");
+        //let timelogUrl = "https://localhost:5001/tidepaykeeping-api/Timelog";
+        const clockOut = '2012-12-21 03:00:00';
+        //const clockInsUrl = `${timelogUrl}/${employeeID}/${clockOut}`;
+        const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
+        console.log(getClockInsUrl);
+        fetch(getClockInsUrl).then(function(response){ 
+            return response.text();
+        }).then(function(json) {
+            timelogList=json;
+            console.log(timelogList);
+            postClockIn(employeeID);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
+    catch(Error)
     {
+        //timelogList = null;
+        console.log(Error);
+        return timelogList;
+    }
+         
+}
+
+function postClockIn(employeeID){
+    if(timelogList == "")
+    {
+        console.log("made it to clock in");
         const postClockInApiUrl = timelogUrl;
         const sendClockIn = {
             empID : employeeID,
@@ -106,6 +108,7 @@ function clockIn(){
             body: JSON.stringify(sendClockIn)
         })
         .then((response)=>{
+            console.log(response);
             myTimelogs = sendClockIn;
             console.log(myTimelogs);
         });
@@ -123,7 +126,7 @@ function clockIn(){
     {
         let html = `<div style="color: rgb(170, 9, 9);">This user has already been clocked in.</div>`;
         document.getElementById('displayClockInError').innerHTML = html;
-    }  
+    } 
 }
 
 function clockOut(){
