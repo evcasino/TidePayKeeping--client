@@ -9,7 +9,7 @@
     <title>TimeSheet Employee Report</title>
 </head>
 
-<body onload="displayEmpID();">
+<body onload="displayEmpID(); fetchData();">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
@@ -32,8 +32,8 @@
        <button id= "nextB" class="btn btn-secondary btn-lg active" onclick="nextWeek()">Next</button> 
       </div>
       <!-- When Creating actual table from db, Week Total Box needs to be created.  -->
-      <div class ="firstWeek">
-      <table>        
+      <div id ="datavalues">
+      <!-- <table>        
           <tr>
             <th>Day</th>
             <th>Start</th>
@@ -41,6 +41,12 @@
             <th>Total</th>
           </tr>
           <tr>
+            <div id="datavalues">
+
+            </div>
+          </tr> -->
+          
+          <!-- <tr>
             <td>Test Data</td>
             <td>Test Data</td>
             <td>Test Data</td>
@@ -57,12 +63,29 @@
             <td>Test Data</td>
             <td>Test Data</td>
             <td>Test Data</td>
-          </tr>
-       </table>
+          </tr> -->
+       <!-- </table>
+       <table>     -->
+
+        <tr>
+
+          <td>Week Total =</td>
+          <!-- <div id="totalvalue">
+
+          </div> -->
+          <div id = "tHours">
+            
+          </div>
+
+
+
+        </tr>
+
+      </table>
       </div>
 
       <div class ="secondWeek">
-        <table>    
+        <!-- <table>    
         <tr>
           <th>Day</th>
           <th>Start</th>
@@ -87,7 +110,7 @@
           <td>Test Data</td>
           <td>Test Data</td>
         </tr>
-     </table>
+     </table> -->
     </div>
 
    </main>

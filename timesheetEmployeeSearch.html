@@ -29,17 +29,17 @@
         <div class="form__input-group">
                 
                 <label for="fname">Start Date</label>
-                <input class ="searchDate" type="text" id="fname" placeholder="xx/xx/xxxx">
+                <input class ="searchDate" type="date" id="startDate">
                 
                 ↔ 
                 
-                <input class ="searchDate" type="text" id="lname" placeholder="xx/xx/xxxx">
+                <input class ="searchDate" type="date" id="endDate">
                 <label for="lname">End Date</label>
 
             <!-- <div class="form__input-error-message"></div> -->
         </div>
        <div class = "tsrButton">
-        <button id= "timeSheetReport" class="btn btn-secondary btn-lg btn-block" >Search   &#x1F50D;</button>
+        <button id= "timeSheetReport" class="btn btn-secondary btn-lg btn-block" onclick="searchStartEnd()">Search   &#x1F50D;</button>
         </div>
 
    </main>
@@ -55,6 +55,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="./resources/scripts/Manager.js" type="text/JavaScript"></script>
+    <script src="./Resources/scripts/timesheetReport.js" type="text/JavaScript"></script>
     
 </body>
 </html>

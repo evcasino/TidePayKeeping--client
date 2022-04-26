@@ -186,5 +186,5 @@ function clockOut(){
 }
 
 function timesheetReport(){
-    window.location.href = "./timesheetEmployeeReport.html";
+    window.location.href = "./timesheetEmployeeSearch.html";
 }
