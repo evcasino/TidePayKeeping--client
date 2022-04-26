@@ -8,7 +8,7 @@
     <link href = "./Resources/css/Manager.css" rel="stylesheet">
     <title>Employee Information</title>
 </head>
-<body onload="displayEmpID()">
+<body onload="displayEmpID(); fetchEmpInfo();">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
@@ -27,34 +27,8 @@
 
     <main> 
 
-      <div class ="employeeInfo">
-      <table>        
-          <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Email</th>
-            <th>Salary</th>
-          </tr>
-          <!-- Comment out below and populate using same format when ready -->
-          <tr>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-          </tr>
-          <tr>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-          </tr>
-          <tr class = "totalRow">
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-          </tr>
-       </table>
+      <div id ="employeeInfo">
+      
       </div>
 
    </main>

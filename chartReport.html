@@ -11,7 +11,7 @@
 
     <title>Manager Chart Report</title>
 </head>
-<body onload="chartOnload()">
+<body onload="chartOnload(); displayEmpID();">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
@@ -63,7 +63,7 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li id="UserLink" class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" style="font:22pt Arial; color:#ffffff;">Log Out</a>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: black; background-color: white; font-family: copperplate;" onclick="logOutChart()">Log Out</button>        
         </li>
 
     </ul></footer>

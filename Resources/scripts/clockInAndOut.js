@@ -185,6 +185,26 @@ function clockOut(){
 
 }
 
+function redirectManager(i){
+    console.log(i);
+    if(i == 1)
+    {
+        window.location.href = "./employeeInfo.html";
+    }
+    else if(i == 2)
+    {
+        window.location.href = "./employeeHistorySearch.html";
+    }
+    else if(i == 3)
+    {
+        window.location.href = "./chartReport.html";
+    }
+    else if(i ==4)
+    {
+        window.location.href = "./totalSalariesReport.html";
+    }
+}
+
 function timesheetReport(){
     window.location.href = "./timesheetEmployeeSearch.html";
 }

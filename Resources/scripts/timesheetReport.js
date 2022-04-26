@@ -1,11 +1,10 @@
-const userString4 = sessionStorage.getItem('userID');
-const userString5 = JSON.parse(userString4);
+const userString4 = JSON.parse(sessionStorage.getItem('userID'));
 const timeReportUrl = "https://localhost:5001/tidepaykeeping-api/TimeReport";
 var timeReportList = [];
 
 function displayEmpID(){
-    console.log(userString5);
-    let html=`<a class="nav-link active" id="userID" aria-current="page" href="#">${userString5}</a>`;
+    console.log(userString4);
+    let html=`<a class="nav-link active" id="userID" aria-current="page" href="#">${userString4}</a>`;
     document.getElementById("UserLink").innerHTML=html;
 }
 
@@ -31,7 +30,24 @@ function searchStartEnd(){
     sessionStorage.setItem('userSDate', startDate);
     const endDate = eDate;
     sessionStorage.setItem('userEDate', endDate);
-    window.location.href = "./timesheetEmployeeReport.html";
+
+    if(startDate > endDate)
+    {
+        toggle();
+
+    }
+    else
+    {
+        window.location.href = "./timesheetEmployeeSearch.html";
+    }
+
+}
+
+function toggle(){
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+    var clockInM = document.getElementById('clockM');
+    clockInM.classList.toggle('active');
 }
 
 function fetchData(){
@@ -42,7 +58,7 @@ function fetchData(){
     let employeeID = convertEmpEmail();
     const gettimeReportsUrl = timeReportUrl + "/" + employeeID + "/" + sDate + "/" + eDate;
     console.log(gettimeReportsUrl);
-
+    // document.getElementById("displayEmpName").innerHTML = employeeID;
     //var myDate = myDate.getDay();
     var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var totalHoursWorked = 0;
@@ -74,7 +90,7 @@ function fetchData(){
             totalHoursWorked += timeReportList.total;
         });
         html += `<tr><td></td><td></td>
-        <td>Week Total = </td>
+        <th> Total Hours = </th>
         <td id= "tHours">${totalHoursWorked}</td>
         </tr></table>`;
         
@@ -114,4 +130,9 @@ function convertEmpEmail(){
         employeeID = '6';
     }
     return employeeID;
+}
+
+function logOutMgr(){
+    console.log("made it");
+    window.location.href = "./index.html";
 }

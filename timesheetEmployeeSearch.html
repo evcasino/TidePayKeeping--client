@@ -8,7 +8,7 @@
     <link href = "./Resources/css/Employee.css" rel="stylesheet">
     <title>Clock In/Out Employee</title>
 </head>
-<body>
+<body onload="displayEmpID();">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
@@ -26,6 +26,7 @@
     </header>
 
     <main class ="employeeSearch" id ="employeeSearch"> 
+      <div id="blur" class="body">
         <div class="form__input-group">
                 
                 <label for="fname">Start Date</label>
@@ -42,7 +43,18 @@
         <button id= "timeSheetReport" class="btn btn-secondary btn-lg btn-block" onclick="searchStartEnd()">Search   &#x1F50D;</button>
         </div>
 
+      
+    </div>
    </main>
+
+   <div id ="clockM">
+    <p class = "pMessage">Error: Please select an end date after start date.<p>
+    <div id="displayTimeStamp">
+
+    </div>
+    <button id= "close" class="btn btn-secondary" onclick = "toggle()">Close</button>
+    </p>
+    </div>
 
     <footer>
 
@@ -54,7 +66,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="./resources/scripts/Manager.js" type="text/JavaScript"></script>
+    <!-- <script src="./resources/scripts/Manager.js" type="text/JavaScript"></script> -->
     <script src="./Resources/scripts/timesheetReport.js" type="text/JavaScript"></script>
     
 </body>

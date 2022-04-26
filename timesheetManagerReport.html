@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href = "./Resources/css/Manager.css" rel="stylesheet">
+    <link href = "./Resources/css/Employee.css" rel="stylesheet">
     <title>TimeSheet Manager Report(Admin Function)</title>
 </head>
-<body onload="displayEmpID()">
+<body onload="displayEmpID(); fetchData();">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
@@ -25,73 +26,36 @@
       </nav>
     </header>
 
+    
+
     <main> 
       <div class = "pnButton">
-       <button id= "previousB" class="btn btn-secondary btn-lg active" >Prev</button>
-       <button id= "nextB" class="btn btn-secondary btn-lg active" >Next</button> 
+        <button id= "previousB" class="btn btn-secondary btn-lg active" onclick="previousWeek()">Prev</button>
+        <button id= "nextB" class="btn btn-secondary btn-lg active" onclick="nextWeek()">Next</button> 
+      </div>
+      <br><br>
 
-       <div class = "tsrButton">
-        <input type="submit" value="Save Changes" class="btn btn-secondary btn-lg btn-block" ></input>
-        </div>
-      </div>
       <!-- When Creating actual table from db, Week Total Box needs to be created.  -->
-      <div class ="firstWeek">
-      <table>        
-          <tr>
-            <th>Day</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Total</th>
-          </tr>
-          <tr>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-          </tr>
-          <tr>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-          </tr>
-          <tr class = "totalRow">
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-          </tr>
-       </table>
+      <div id ="datavalues">
+      
+
+        <tr>
+
+          <td>Week Total =</td>
+          
+          <div id = "tHours">
+
+          </div>
+
+        </tr>
+
+      </table>
       </div>
+
       <div class ="secondWeek">
-        <table>        
-            <tr>
-              <th>Day</th>
-              <th>Start</th>
-              <th>End</th>
-              <th>Total</th>
-            </tr>
-            <tr>
-              <td>Test Data</td>
-              <td>Test Data</td>
-              <td>Test Data</td>
-              <td>Test Data</td>
-            </tr>
-            <tr>
-              <td>Test Data</td>
-              <td>Test Data</td>
-              <td>Test Data</td>
-              <td>Test Data</td>
-            </tr>
-            <tr class = "totalRow">
-              <td>Test Data</td>
-              <td>Test Data</td>
-              <td>Test Data</td>
-              <td>Test Data</td>
-            </tr>
-         </table>
-        </div>
-            <!-- Week Total Boxes? -->
+        
+    </div>
+
    </main>
 
     <footer>
@@ -105,6 +69,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="./resources/scripts/Manager.js" type="text/JavaScript"></script>
+    <script src="./Resources/scripts/timesheetReport.js" type="text/JavaScript"></script>
     
 </body>
 </html>

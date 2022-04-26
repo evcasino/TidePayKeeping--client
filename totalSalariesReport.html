@@ -8,7 +8,7 @@
     <link href = "./Resources/css/Manager.css" rel="stylesheet">
     <title>Total Salaries Report</title>
 </head>
-<body onload="displayEmpID()">
+<body onload="displayEmpID();">
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
@@ -26,68 +26,60 @@
     </header>
 
     <main> 
+      <div id="blur" class="body">
         <div class="form__input-group">
                 
-            <label for="fname">Start Date</label>
-            <input class ="searchDate" type="text" id="fname" placeholder="xx/xx/xxxx">
-            
-            ↔ 
-            
-            <input class ="searchDate" type="text" id="lname" placeholder="xx/xx/xxxx">
-            <label for="lname">End Date</label>
-            <div class = "tsrButton">
-                <input type="submit" value="Search   &#x1F50D;" class="btn btn-secondary btn-lg btn-block" ></input>
+          <label for="fname">Start Date</label>
+          <input class ="searchDate" type="date" id="startDate">
+          
+          ↔ 
+          
+          <input class ="searchDate" type="date" id="endDate">
+          <label for="lname">End Date</label>
+
                 </div>
+                <div class = "tsrButton">
+                  <button id= "timeSheetReport" class="btn btn-secondary btn-lg btn-block" onclick="searchStartEnd();tst();">Search   &#x1F50D;</button>
+                  </div>
 
         <!-- <div class="form__input-error-message"></div> -->
     </div>
 
-      <div class ="employeeInfo">
-      <table>        
-          <tr>
-            <th>Employees</th>
-            <th>Total Hours</th>
-            <th>Salary</th>
-            <th>$ Owed</th>
-          </tr>
-          <!-- Comment out below and populate using same format when ready -->
-          <tr>
-              <label class = "firstRow"></label>
-            <td class= "firstRow">Name</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-          </tr>
-          <tr>
-            <td class= "firstRow">Name</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-          </tr>
-          <tr>
-            <td class= "firstRow">Name</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-            <td>Test Data</td>
-          </tr>
+      <div>
+      <table id ="datavalues">        
        </table>
       </div>
 
+      <div>
+        <table>        
+         </table>
+        </div>
+
       
-                <!-- Total Owed Box? -->
+      </div>
    </main>
+
+   <div id ="clockM">
+    <p class = "pMessage">Error: Please select an end date after start date.<p>
+    <div id="displayTimeStamp">
+
+    </div>
+    <button id= "close" class="btn btn-secondary" onclick = "toggle()">Close</button>
+    </p>
+    </div>
 
     <footer>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li  id ="UserLink" class="nav-item" >
-          <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: black; background-color: white; font-family: copperplate;" onclick="logOutMgr()">Log Out</button>        
+          <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: black; background-color: white; font-family: copperplate;" onclick="logOut();">Log Out</button>        
         </li>
 
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="./resources/scripts/Manager.js" type="text/JavaScript"></script>
+    <script src="./resources/scripts/TimeReport.js" type="text/JavaScript"></script>
+    <!-- <script src="./resources/scripts/Manager.js" type="text/JavaScript"></script> -->
     <!-- Change JS to manager if necessary -->
     
 </body>
