@@ -38,7 +38,7 @@ function searchStartEnd(){
     }
     else
     {
-        window.location.href = "./timesheetEmployeeSearch.html";
+        window.location.href = "./timesheetEmployeeReport.html";
     }
 
 }
@@ -69,7 +69,8 @@ function fetchData(){
         console.log("1.0");
         let html = `<table>        
         <tr>
-          <th>Day</th>
+        <th>Day</th>
+          <th>Date</th>
           <th>Start</th>
           <th>End</th>
           <th>Total</th>
@@ -81,7 +82,8 @@ function fetchData(){
             //var myDay = myDate.getDay();
             //html += `<table>`;
             html += `<tr>`;
-            html += `<td>`+ timeReportList.dayofwork+`</td>`;
+            html += `<td>`+ timeReportList.weekday+`</td>`;
+            html += `<td>`+ timeReportList.dayofwork.substring(0, 10)+`</td>`;
             html += `<td >`+ timeReportList.clockinHour+`</td>`;
             html += `<td >`+ timeReportList.clockoutHour+`</td>`;
             html += `<td >`+ timeReportList.total+`</td>`;
@@ -105,27 +107,27 @@ function fetchData(){
 
 function convertEmpEmail(){
     let employeeID = '1';
-    if(userString5 == "adams@tm.com")
+    if(userString4 == "adams@tm.com")
     {
         employeeID = '1';
     }
-    else if(userString5 == "bosley@tm.com")
+    else if(userString4 == "bosley@tm.com")
     {
         employeeID = '2';
     }
-    else if(userString5 == "conners@tm.com")
+    else if(userString4 == "conners@tm.com")
     {
         employeeID = '3';
     }
-    else if(userString5 == "diaz@tm.com")
+    else if(userString4 == "diaz@tm.com")
     {
         employeeID = '4';
     }
-    else if(userString5 == "east@tm.com")
+    else if(userString4 == "east@tm.com")
     {
         employeeID = '5';
     }
-    else if(userString5 == "frederick@tm.com")
+    else if(userString4 == "frederick@tm.com")
     {
         employeeID = '6';
     }

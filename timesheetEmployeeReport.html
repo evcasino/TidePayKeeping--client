@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href = "./Resources/css/Employee.css" rel="stylesheet">
+    <link href = "./Resources/css/Manager.css" rel="stylesheet">
     <title>TimeSheet Employee Report</title>
 </head>
 
@@ -27,10 +28,20 @@
     </header>
 
     <main> 
-      <p><div class = "pnButton">
-        <button id= "previousB" class="btn btn-secondary btn-lg active" onclick="previousWeek()">Prev</button>
-        <button id= "nextB" class="btn btn-secondary btn-lg active" onclick="nextWeek()">Next</button> 
-      </div></p>
+      <div id="blur" class="body">
+      <div class = "pnButton">
+          <label for="fname">Start Date</label>
+          <input class ="searchDate" type="date" id="startDate">
+          
+          ↔ 
+          
+          <input class ="searchDate" type="date" id="endDate">
+          <label for="lname">End Date</label>
+          <div class = "tsrButton">
+            <button id= "timeSheetReport" class="btn btn-secondary btn-lg btn-block" onclick="searchStartEnd();">Search   &#x1F50D;</button>
+            </div>
+      </div>
+    
       <p><br><br></p>
       
       <!-- When Creating actual table from db, Week Total Box needs to be created.  -->
@@ -39,10 +50,6 @@
 
         <tr>
 
-          <td>Week Total =</td>
-          <!-- <div id="totalvalue">
-
-          </div> -->
           <div id = "tHours">
 
           </div>
@@ -54,16 +61,23 @@
       </table>
       </div>
 
-      <!-- <div class ="secondWeek"> -->
-        
     </div>
-
+  </div>
    </main>
+
+   <div id ="clockM">
+    <p class = "pMessage">Error: Please select an end date after start date.<p>
+    <div id="displayTimeStamp">
+
+    </div>
+    <button id= "close" class="btn btn-secondary" onclick = "toggle()">Close</button>
+    </p>
+    </div>
 
     <footer>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li  id ="UserLink" class="nav-item" >
+        <li  id ="UserLink" class="nav-item">
           <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: black; background-color: white; font-family: copperplate;" onclick="logOutTimesheet()">Log Out</button>        
         </li>
 
