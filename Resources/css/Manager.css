@@ -14,9 +14,13 @@ main{
     text-align: center;
     padding: 40px;
 }
+#overrideButton{
+  position:absolute;
+  right: 12%;
+}
 .employeeSearch{
     top:30%;
-    font-size: 50px;
+    font-size: 40px;
     justify-content: center;
     text-align: center;
     position: absolute;
@@ -30,6 +34,29 @@ main{
     user-select: none;
     justify-content: center;
     text-align: center;
+}
+#Change{
+  position:fixed;
+  transform: translate(-50%,-50%);
+  top:40%;
+  left:50%; 
+  width: 400px;
+  padding: 50px;
+  box-shadow: 0 5px 30px;
+  background: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+  justify-content: center;
+  text-align: center;
+  font-size: 50px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+#Change.active{
+  top:50%;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
 }
 #clockM{
     position:fixed;
@@ -61,6 +88,7 @@ main{
     padding:5px;
 }
 footer{
+    
     padding: 40px;
     max-height: 50px;
     width: 100%;
@@ -138,4 +166,7 @@ input[type=text], select {
     margin-right: auto;
     padding: 50px;
 
+}
+.extraPadding{
+ bottom: 10%;
 }

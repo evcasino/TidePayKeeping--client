@@ -13,7 +13,9 @@
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: rgb(170, 9, 9);">
         <div class="container-fluid">
+          <a href = "./clockInOutManager.html">
             <img id ="LogoID" src = "./Resources/images/pLogo.jpg">
+          </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li  id ="UserLink" class="nav-item">
@@ -41,9 +43,9 @@
           <div class = "tsrButton">
             <button id= "timeSheetReport" class="btn btn-secondary btn-lg btn-block" onclick="searchInTimesheet();">Search   &#x1F50D;</button>
             </div>
-            <div class = "overrideButton">
-              <button id= "override" class="btn btn-danger" onclick="override();">Make Changes</button>
-            </div>
+      </div>
+      <div id="overrideButton">
+        <button id= "override" class="btn btn-danger" onclick="override();">Make Changes</button>
       </div>
       <br><br>
 
@@ -74,6 +76,16 @@
     </div>
     </div>
    </main>
+
+   <div id ="Change">
+    <a id ="date"></a>
+    <a id ="timelogID"></a>
+    <p>New Clock In: <input id ="newClockInTime" style="width: 90%;" type="time" required><p>
+    <p>New Clock Out: <input id ="newClockOutTime" style="width: 90%;" type="time" required><p>
+    <button id= "saveChanges" class="btn btn-secondary" onclick = "saveChanges()">Enter</button>
+    <button id= "close" class="btn btn-secondary" onclick = "changeValues()">Close</button>
+
+    </div>
 
     <div id ="clockM">
     <p class = "pMessage">Error: Please select an end date after start date.<p>

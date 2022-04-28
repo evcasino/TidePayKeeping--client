@@ -215,7 +215,7 @@ function tst(){
         html += `<td>`+ employees[i]+`</td>`;
         html += `<td>`+ empTotal[i]+`</td>`;
         html += `<td>`+'$'+ empSalary[i] +'/hour'+`</td>`;
-        html += `<td>`+ '$'+ (empSalary[i]*empTotal[i])+`</td>`;
+        html += `<td>`+ '$'+ (empSalary[i]*empTotal[i]).toFixed(2)+`</td>`;
 
 
         html += `</tr>`;

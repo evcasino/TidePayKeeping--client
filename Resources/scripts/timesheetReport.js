@@ -91,10 +91,11 @@ function fetchData(){
 
             totalHoursWorked += timeReportList.total;
         });
-        html += `<tr><td></td><td></td>
+        html += `</table>
+        <table>
         <th> Total Hours = </th>
         <td id= "tHours">${totalHoursWorked}</td>
-        </tr></table>`;
+        </table>`;
         
         document.getElementById("datavalues").innerHTML = html;
         //document.getElementById("tHours").innerHTML = html;

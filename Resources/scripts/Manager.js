@@ -10,6 +10,9 @@ function displayEmpID(){
     let html=`<a class="nav-link active" id="userID" aria-current="page" href="#">${userString6}</a>`;
     document.getElementById("UserLink").innerHTML=html;
 }
+function backToHome(){
+    window.location.href = "./clockInOutManager.html"
+}
 
 function toggle(){
     var blur = document.getElementById('blur');
@@ -243,7 +246,6 @@ function override(){
     let employeeID = sessionStorage.getItem('mgrEmpID');
     const gettimeReportsUrl = timeReportUrl + "/" + employeeID + "/" + sDate + "/" + eDate;
     let empName = convertEmpName(employeeID);
-    //var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var totalHoursWorked = 0;
     fetch(gettimeReportsUrl).then(function(response){ 
         return response.json();
@@ -259,17 +261,20 @@ function override(){
           <th>Start</th>
           <th>End</th>
           <th>Total</th>
+          <th>Change Values</th>
         </tr>`;
-        var count = 0;
+        var value = "";
         json.forEach((timeReportList) => {
-            count ++; 
+            value = timeReportList.dayofwork.substring(0, 10);
             html += `<tr>`;
             html += `<td>`+ timeReportList.weekday+`</td>`;
             html += `<td>`+ timeReportList.dayofwork.substring(0, 10)+`</td>`;
             html += `<td><input style="width: 90%;" type="text" id="newClockIn" name="row-1-age" value="${timeReportList.clockinHour}"></td>`;
             html += `<td><input style="width: 90%;" type="text" id="newClockOut" name="row-1-age" value="${timeReportList.clockoutHour}"></td>`;
             html += `<td >`+ timeReportList.total+`</td>`;
-
+            html += '<td ><button id= '+value+' value='+timeReportList.timelogID+' type="button" class="btn btn-success" onclick="changeValues(id,value)">Change</button></td>'
+                // button id = xxxx/xx/xx
+                // button value = timelogID
             totalHoursWorked += timeReportList.total;
             console.log(totalHoursWorked);
         });
@@ -278,8 +283,8 @@ function override(){
         <th> Total Hours = </th>
         <td id= "tHours">${totalHoursWorked}</td>
         </table>
-        <br><br>
-        <button type="button" class="btn btn-success" onclick="saveChanges(count)">Save Changes</button>`;
+        <br><br>`;
+       
         
         document.getElementById("datavalues").innerHTML = html;
         
@@ -287,16 +292,38 @@ function override(){
         console.log(error);
     });
 }
+function changeValues(id, value){
+    console.log("inside changeValues():" + value);
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+    var change = document.getElementById('Change');
+    change.classList.toggle('active');
+    document.getElementById("date").innerHTML = id;
+    document.getElementById("date").value = id;
+    document.getElementById("timelogID").value = value;
 
+}
 function saveChanges(){
     const putTimelogUrl = timelogUrl;
     console.log(putTimelogUrl);
+    var dateOfChange = document.getElementById("date").value;
+    var temptlgID = document.getElementById("timelogID").value;
+    var newCI = dateOfChange +' '+document.getElementById("newClockInTime").value+':00';
+    var newCO = dateOfChange +' '+document.getElementById("newClockOutTime").value+':00';
+    var tempEmpID = sessionStorage.getItem('mgrEmpID');
+    console.log(tempEmpID);
+    console.log(dateOfChange);
+    console.log(newCI);
+    console.log(newCO);
+    console.log(temptlgID);
     const sendTimelog = {
-        clockIn : document.getElementById("newClockIn").value,
-        clockOut : document.getElementById("newClockOut").value,
-        empID : sessionStorage.getItem('mgrEmpID'),
+        timelogID : parseInt(temptlgID),
+        NewclockIn : (newCI),
+        NewclockOut : (newCO),
+        empID : tempEmpID,
     }
-    fetch(putTimelogUrl, {
+    console.log(sendTimelog);
+    fetch(putTimelogUrl + "/" + temptlgID, {
         method: "PUT",
         headers: {
             "Accept": 'application/json',
@@ -307,6 +334,13 @@ function saveChanges(){
     .then((response)=>{
         console.log("yay");
     });
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+    var change = document.getElementById('Change');
+    change.classList.toggle('active');
+
+    window.location.href = "./timesheetManagerReport.html";
+
 }
 
 function logOutMgr(){
