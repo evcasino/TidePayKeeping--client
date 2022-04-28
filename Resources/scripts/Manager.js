@@ -177,6 +177,66 @@ function fetchEmpInfo(){
     });
 }
 
+function sortMgr(i){
+    console.log(i);
+    if(i == 1)
+    {
+        actuallySort(i);
+    }
+    else if(i == 2)
+    {
+        actuallySort(2);
+    }
+    
+}
+
+function actuallySort(i){
+    let sDate = sessionStorage.getItem('mgrSDate');
+    let eDate = sessionStorage.getItem('mgrEDate');
+    let employeeID = sessionStorage.getItem('mgrEmpID');
+    const getSortedUrl = timeReportUrl + "/" + employeeID + "/" + sDate + "/" + eDate + "/" + i;
+    console.log(getSortedUrl);
+    let empName = convertEmpName(employeeID);
+    var totalHoursWorked = 0;
+    fetch(getSortedUrl).then(function(response){ 
+        return response.json();
+    }).then(function(json) {
+        timeReportList=json;
+        let html = `<table>
+        <tr><th style="text-align: center;">${empName}</th></tr>
+        </table>
+        <table>      
+        <tr>
+        <th>Day</th>
+          <th>Date</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Total</th>
+        </tr>`;
+        json.forEach((timeReportList) => {
+            html += `<tr>`;
+            html += `<td>`+ timeReportList.weekday+`</td>`;
+            html += `<td>`+ timeReportList.dayofwork.substring(0, 10)+`</td>`;
+            html += `<td >`+ timeReportList.clockinHour+`</td>`;
+            html += `<td >`+ timeReportList.clockoutHour+`</td>`;
+            html += `<td >`+ timeReportList.total+`</td>`;
+
+            totalHoursWorked += timeReportList.total;
+            console.log(totalHoursWorked);
+        });
+        html += `</table>
+        <table>
+        <th> Total Hours = </th>
+        <td id= "tHours">${totalHoursWorked}</td>
+        </table>`;
+        
+        document.getElementById("datavalues").innerHTML = html;
+        
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
+
 function override(){
     let sDate = sessionStorage.getItem('mgrSDate');
     let eDate = sessionStorage.getItem('mgrEDate');

@@ -47,6 +47,14 @@
       </div>
       <br><br>
 
+      <div class = "sortDropdown">
+        <select name = "sorting" id="dropdownSort" onchange="sortMgr(value)">
+          <option value="0" disabled selected style="color:#000000;">Sort By:</option>
+          <option value="1">Shift Day</option>
+          <option value="2">Shift Time(total)</option>
+        </select>
+      </div>
+
       <!-- When Creating actual table from db, Week Total Box needs to be created.  -->
       <div id ="datavalues">
 
