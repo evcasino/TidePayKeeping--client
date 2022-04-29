@@ -7,12 +7,11 @@ function logIn(){
     const password = document.getElementById("getPassword").value;
     const getEmployeeApiUrl = employeeUrl + "/" + email + "/" + password;
     const userString = JSON.stringify(email);
-    localStorage.setItem('userID', userString); //setting this so the next page can display the email the user entered
+    sessionStorage.setItem('userID', userString); //setting this so the next page can display the email the user entered
     fetch(getEmployeeApiUrl).then(function(response){ 
         return response.json();
     }).then(function(json) {
         employeeList=json;
-        console.log(employeeList);
         let employee = determineEmpOrManager();
         if(employee == true)
         {
@@ -30,7 +29,6 @@ function logIn(){
 }
 
 function determineEmpOrManager(){
-    console.log("made it to determine");
     let employee = true;
     if (employeeList.managerID == null)
     {

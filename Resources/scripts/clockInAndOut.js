@@ -4,7 +4,7 @@ var employeeList = [];
 var myEmployees = {};
 var timelogList = [];
 var myTimelogs = {};
-const userString = localStorage.getItem('userID');
+const userString = sessionStorage.getItem('userID');
 const userString2 = JSON.parse(userString);
 var employeeID;
 
@@ -60,38 +60,33 @@ function convertEmpEmail(){
     return employeeID;
 }
 
-// function checkOpenTimelogs(){
-//     const clockOut = '2012-12-21 03:00:00';
-//     const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
-//     fetch(getClockInsUrl).then(function(response){ 
-//         return response.json();
-//     }).then(function(json) {
-//         timelogList=json;
-//         console.log(timelogList);
-//     }).catch(function(error) {
-//         console.log(error);
-//     });
-// }
-
 function clockIn(){
 
     let employeeID = convertEmpEmail();
-    console.log(employeeID);
 
-    //first, checking that this user hasn't clock-in already
-    const clockOut = '2012-12-21 03:00:00';
-    const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
-    fetch(getClockInsUrl).then(function(response){ 
-        return response.json();
-    }).then(function(json) {
-        timelogList=json;
-        console.log(timelogList);
-    }).catch(function(error) {
-        console.log(error);
-    });
-    
-    //now, we can create a new timelog entry if we've determined there are no open clock-ins for this user
-    if(timelogList = null)
+    try{
+        //let timelogUrl = "https://localhost:5001/tidepaykeeping-api/Timelog";
+        const clockOut = '2012-12-21 03:00:00';
+        //const clockInsUrl = `${timelogUrl}/${employeeID}/${clockOut}`;
+        const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
+        fetch(getClockInsUrl).then(function(response){ 
+            return response.text();
+        }).then(function(json) {
+            timelogList=json;
+            postClockIn(employeeID);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
+    catch(Error)
+    {
+        console.log(Error);
+        return timelogList;
+    }
+}
+
+function postClockIn(employeeID){
+    if(timelogList == "")
     {
         const postClockInApiUrl = timelogUrl;
         const sendClockIn = {
@@ -107,10 +102,17 @@ function clockIn(){
         })
         .then((response)=>{
             myTimelogs = sendClockIn;
-            console.log(myTimelogs);
         });
         var today = new Date();
-        var clockInTime = today.getHours() + ":" + today.getMinutes();
+        var clockInTime = "";
+        if (today.getMinutes() < 10) 
+        {
+            clockInTime = today.getHours() + ":0" + today.getMinutes();
+        }
+        else
+        {
+            clockInTime = today.getHours() + ":" + today.getMinutes();
+        }
         let html = `<div style="color: rgb(170, 9, 9);">${clockInTime}</div>`;
         document.getElementById('displayTimeStamp').innerHTML = html;
 
@@ -123,27 +125,30 @@ function clockIn(){
     {
         let html = `<div style="color: rgb(170, 9, 9);">This user has already been clocked in.</div>`;
         document.getElementById('displayClockInError').innerHTML = html;
-    }  
+    } 
 }
 
 function clockOut(){
     
     let employeeID = convertEmpEmail();
-    console.log(employeeID);
 
     //grabbing the timelogID of the user's already clocked in session so i can update the clockOut value to now
-    const clockOut = '2012-12-21 03:00:00';
-    const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
-    fetch(getClockInsUrl).then(function(response){ 
-        return response.json();
-    }).then(function(json) {
-        timelogList=json;
-        console.log(timelogList);
-    }).catch(function(error) {
-        console.log(error);
-    });
-    //console.log(timelogList);
-    //console.log(timelogList[0].timelogID);
+    try
+    {
+        const clockOut = '2012-12-21 03:00:00';
+        const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
+        fetch(getClockInsUrl).then(function(response){ 
+            return response.json();
+        }).then(function(json) {
+            timelogList=json;
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }  
+    catch(Error)
+    {
+        console.log(Error);
+    }
 
     if(timelogList != null)
     {
@@ -161,7 +166,6 @@ function clockOut(){
         })
         .then((response)=>{
             myTimelogs = sendClockOut;
-            console.log(myTimelogs);
         });
 
         var today = new Date();
@@ -183,4 +187,25 @@ function clockOut(){
 
 }
 
+function redirectManager(i){
+    if(i == 1)
+    {
+        window.location.href = "./employeeInfo.html";
+    }
+    else if(i == 2)
+    {
+        window.location.href = "./employeeHistorySearch.html";
+    }
+    else if(i == 3)
+    {
+        window.location.href = "./chartReport.html";
+    }
+    else if(i ==4)
+    {
+        window.location.href = "./totalSalariesReport.html";
+    }
+}
 
+function timesheetReport(){
+    window.location.href = "./timesheetEmployeeSearch.html";
+}
