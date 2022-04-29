@@ -3,7 +3,6 @@ const timeReportUrl = "https://localhost:5001/tidepaykeeping-api/TimeReport";
 var timeReportList = [];
 
 function displayEmpID(){
-    console.log(userString7);
     let html=`<a class="nav-link active" id="userID" aria-current="page" href="#">${userString7}</a>`;
     document.getElementById("UserLink").innerHTML=html;
 }
@@ -32,13 +31,10 @@ function chartOnload(){
     var check6 = false;
 
     fetch(timeReportUrl).then(function(response) {
-        console.log(response);
         return response.json();
         }).then(function(json) {
-    console.log(json)
     myTimelogs = json;
     json.forEach((log) => {
-        console.log(log.empID)
         switch(log.empID){
                 case "1":
                     if(check1 == false)
@@ -91,7 +87,6 @@ function chartOnload(){
 
         }
     });
-    console.log(employees);
     var barColors = ["lightcoral", "lightgreen","lightblue","lightseagreen","bisque","lavender"];
     let myChart = document.getElementById('myChart').getContext('2d');
             let bar1Chart = new Chart(myChart, {
@@ -139,13 +134,10 @@ function tst(){
     
 
     fetch(gettimeReportsUrl).then(function(response) {
-        console.log(response);
         return response.json();
         }).then(function(json) {
-    console.log(json)
     myTimelogs = json;
     json.forEach((log) => {
-        console.log(log.empID)
         
         switch(log.empID){
                 case "1":
@@ -210,12 +202,12 @@ function tst(){
     <th>$ Owed</th>
   </tr>`;
     for(let i = 0; i < employees.length; i++){
-        console.log("inside print table:" +empTotal[i]);
         html += `<tr>`;
         html += `<td>`+ employees[i]+`</td>`;
         html += `<td>`+ empTotal[i]+`</td>`;
         html += `<td>`+'$'+ empSalary[i] +'/hour'+`</td>`;
         html += `<td>`+ '$'+ (empSalary[i]*empTotal[i])+`</td>`;
+        html += `<td>`+ '$'+ (empSalary[i]*empTotal[i]).toFixed(2)+`</td>`;
 
 
         html += `</tr>`;
@@ -234,9 +226,6 @@ function tst(){
 function searchStartEnd(){
     let sDate = document.getElementById("startDate").value;
     let eDate = document.getElementById("endDate").value;
-    
-    console.log(sDate);
-    console.log(eDate);
     const startDate = sDate;
     sessionStorage.setItem('userSDate', startDate);
     const endDate = eDate;
@@ -244,6 +233,5 @@ function searchStartEnd(){
 }
 
 function logOut(){
-    console.log("made it");
     window.location.href = "./index.html";
 }

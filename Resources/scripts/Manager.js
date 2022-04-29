@@ -6,9 +6,12 @@ var timeReportList = [];
 var employeeList = [];
 
 function displayEmpID(){
-    console.log(userString6);
     let html=`<a class="nav-link active" id="userID" aria-current="page" href="#">${userString6}</a>`;
     document.getElementById("UserLink").innerHTML=html;
+}
+
+function backToHome(){
+    window.location.href = "./clockInOutManager.html"
 }
 
 function toggle(){
@@ -20,12 +23,8 @@ function toggle(){
 
 function searchMgrTimesheet(){
     let empID = document.getElementById("dropdownEmps").value;
-    console.log(empID);
     let sDate = document.getElementById("startDate").value;
     let eDate = document.getElementById("endDate").value;
-    console.log(empID);
-    console.log(sDate);
-    console.log(eDate);
     const employeeID = empID;
     sessionStorage.setItem('mgrEmpID', employeeID);
     const startDate = sDate;
@@ -44,16 +43,10 @@ function searchMgrTimesheet(){
 }
 
 function searchInTimesheet(){
-    // let empID = document.getElementById("dropdownEmps").value;
-    // console.log(empID);
     let empID = sessionStorage.getItem('mgrEmpID');
     let sDate = document.getElementById("startDate").value;
     let eDate = document.getElementById("endDate").value;
-    console.log(empID);
-    console.log(sDate);
-    console.log(eDate);
     const employeeID = empID;
-    // sessionStorage.setItem('mgrEmpID', employeeID);
     const startDate = sDate;
     sessionStorage.setItem('mgrSDate', startDate);
     const endDate = eDate;
@@ -75,7 +68,6 @@ function fetchData(){
     let employeeID = sessionStorage.getItem('mgrEmpID');
     const gettimeReportsUrl = timeReportUrl + "/" + employeeID + "/" + sDate + "/" + eDate;
     let empName = convertEmpName(employeeID);
-    //var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var totalHoursWorked = 0;
     fetch(gettimeReportsUrl).then(function(response){ 
         return response.json();
@@ -101,7 +93,6 @@ function fetchData(){
             html += `<td >`+ timeReportList.total+`</td>`;
 
             totalHoursWorked += timeReportList.total;
-            console.log(totalHoursWorked);
         });
         html += `</table>
         <table>
@@ -110,7 +101,6 @@ function fetchData(){
         </table>`;
         
         document.getElementById("datavalues").innerHTML = html;
-        //document.getElementById("tHours").innerHTML = html;
         
     }).catch(function(error) {
         console.log(error);
@@ -148,7 +138,6 @@ function fetchEmpInfo(){
         return response.json();
     }).then(function(json) {
         employeeList=json;
-        console.log(employeeList);
         let html = `<table>        
         <tr>
           <th>EmpID</th>
@@ -158,8 +147,6 @@ function fetchEmpInfo(){
           <th>Salary/Hr</th>
         </tr>`;
         json.forEach((employeeList) => {
-            console.log("2.0");
-            console.log(employeeList.empEmail);
             html += `<tr>`;
             html += `<td>`+ employeeList.empID +`</td>`;
             html += `<td >`+ employeeList.empLName + ", " + employeeList.empFName +`</td>`;
@@ -178,7 +165,6 @@ function fetchEmpInfo(){
 }
 
 function sortMgr(i){
-    console.log(i);
     if(i == 1)
     {
         actuallySort(i);
@@ -195,7 +181,6 @@ function actuallySort(i){
     let eDate = sessionStorage.getItem('mgrEDate');
     let employeeID = sessionStorage.getItem('mgrEmpID');
     const getSortedUrl = timeReportUrl + "/" + employeeID + "/" + sDate + "/" + eDate + "/" + i;
-    console.log(getSortedUrl);
     let empName = convertEmpName(employeeID);
     var totalHoursWorked = 0;
     fetch(getSortedUrl).then(function(response){ 
@@ -222,7 +207,6 @@ function actuallySort(i){
             html += `<td >`+ timeReportList.total+`</td>`;
 
             totalHoursWorked += timeReportList.total;
-            console.log(totalHoursWorked);
         });
         html += `</table>
         <table>
@@ -243,7 +227,6 @@ function override(){
     let employeeID = sessionStorage.getItem('mgrEmpID');
     const gettimeReportsUrl = timeReportUrl + "/" + employeeID + "/" + sDate + "/" + eDate;
     let empName = convertEmpName(employeeID);
-    //var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var totalHoursWorked = 0;
     fetch(gettimeReportsUrl).then(function(response){ 
         return response.json();
@@ -259,10 +242,11 @@ function override(){
           <th>Start</th>
           <th>End</th>
           <th>Total</th>
+          <th>Change Values</th>
         </tr>`;
-        var count = 0;
+        var value = "";
         json.forEach((timeReportList) => {
-            count ++; 
+            value = timeReportList.dayofwork.substring(0, 10);
             html += `<tr>`;
             html += `<td>`+ timeReportList.weekday+`</td>`;
             html += `<td>`+ timeReportList.dayofwork.substring(0, 10)+`</td>`;
@@ -270,16 +254,16 @@ function override(){
             html += `<td><input style="width: 90%;" type="text" id="newClockOut" name="row-1-age" value="${timeReportList.clockoutHour}"></td>`;
             html += `<td >`+ timeReportList.total+`</td>`;
 
+            html += '<td ><button id= '+value+' value='+timeReportList.timelogID+' type="button" class="btn btn-success" onclick="changeValues(id,value)">Change</button></td>'
+           
             totalHoursWorked += timeReportList.total;
-            console.log(totalHoursWorked);
         });
         html += `</table>
         <table>
         <th> Total Hours = </th>
         <td id= "tHours">${totalHoursWorked}</td>
         </table>
-        <br><br>
-        <button type="button" class="btn btn-success" onclick="saveChanges(count)">Save Changes</button>`;
+        <br><br>`
         
         document.getElementById("datavalues").innerHTML = html;
         
@@ -288,15 +272,31 @@ function override(){
     });
 }
 
+function changeValues(id, value){
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+    var change = document.getElementById('Change');
+    change.classList.toggle('active');
+    document.getElementById("date").innerHTML = id;
+    document.getElementById("date").value = id;
+    document.getElementById("timelogID").value = value;
+
+}
+
 function saveChanges(){
     const putTimelogUrl = timelogUrl;
-    console.log(putTimelogUrl);
+    var dateOfChange = document.getElementById("date").value;
+    var temptlgID = document.getElementById("timelogID").value;
+    var newCI = dateOfChange +' '+document.getElementById("newClockInTime").value+':00';
+    var newCO = dateOfChange +' '+document.getElementById("newClockOutTime").value+':00';
+    var tempEmpID = sessionStorage.getItem('mgrEmpID');
     const sendTimelog = {
-        clockIn : document.getElementById("newClockIn").value,
-        clockOut : document.getElementById("newClockOut").value,
-        empID : sessionStorage.getItem('mgrEmpID'),
+        timelogID : parseInt(temptlgID),
+        NewclockIn : (newCI),
+        NewclockOut : (newCO),
+        empID : tempEmpID,
     }
-    fetch(putTimelogUrl, {
+    fetch(putTimelogUrl + "/" + temptlgID, {
         method: "PUT",
         headers: {
             "Accept": 'application/json',
@@ -305,17 +305,21 @@ function saveChanges(){
         body: JSON.stringify(sendTimelog)
     })
     .then((response)=>{
-        console.log("yay");
+        console.log(response);
     });
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+    var change = document.getElementById('Change');
+    change.classList.toggle('active');
+
+    window.location.href = "./timesheetManagerReport.html";
 }
 
 function logOutMgr(){
-    console.log("made it");
     window.location.href = "./index.html";
 }
 
 function logOut(){
-    console.log("made it");
     window.location.href = "./index.html";
 }
 

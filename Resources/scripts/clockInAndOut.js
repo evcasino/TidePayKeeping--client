@@ -63,20 +63,16 @@ function convertEmpEmail(){
 function clockIn(){
 
     let employeeID = convertEmpEmail();
-    console.log("this is the empl id: " + employeeID);
 
     try{
-        console.log("in the try");
         //let timelogUrl = "https://localhost:5001/tidepaykeeping-api/Timelog";
         const clockOut = '2012-12-21 03:00:00';
         //const clockInsUrl = `${timelogUrl}/${employeeID}/${clockOut}`;
         const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
-        console.log(getClockInsUrl);
         fetch(getClockInsUrl).then(function(response){ 
             return response.text();
         }).then(function(json) {
             timelogList=json;
-            console.log(timelogList);
             postClockIn(employeeID);
         }).catch(function(error) {
             console.log(error);
@@ -84,7 +80,6 @@ function clockIn(){
     }
     catch(Error)
     {
-        //timelogList = null;
         console.log(Error);
         return timelogList;
     }
@@ -93,7 +88,6 @@ function clockIn(){
 function postClockIn(employeeID){
     if(timelogList == "")
     {
-        console.log("made it to clock in");
         const postClockInApiUrl = timelogUrl;
         const sendClockIn = {
             empID : employeeID,
@@ -107,12 +101,18 @@ function postClockIn(employeeID){
             body: JSON.stringify(sendClockIn)
         })
         .then((response)=>{
-            console.log(response);
             myTimelogs = sendClockIn;
-            console.log(myTimelogs);
         });
         var today = new Date();
-        var clockInTime = today.getHours() + ":" + today.getMinutes();
+        var clockInTime = "";
+        if (today.getMinutes() < 10) 
+        {
+            clockInTime = today.getHours() + ":0" + today.getMinutes();
+        }
+        else
+        {
+            clockInTime = today.getHours() + ":" + today.getMinutes();
+        }
         let html = `<div style="color: rgb(170, 9, 9);">${clockInTime}</div>`;
         document.getElementById('displayTimeStamp').innerHTML = html;
 
@@ -131,21 +131,24 @@ function postClockIn(employeeID){
 function clockOut(){
     
     let employeeID = convertEmpEmail();
-    console.log(employeeID);
 
     //grabbing the timelogID of the user's already clocked in session so i can update the clockOut value to now
-    const clockOut = '2012-12-21 03:00:00';
-    const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
-    fetch(getClockInsUrl).then(function(response){ 
-        return response.json();
-    }).then(function(json) {
-        timelogList=json;
-        console.log(timelogList);
-    }).catch(function(error) {
-        console.log(error);
-    });
-    //console.log(timelogList);
-    //console.log(timelogList[0].timelogID);
+    try
+    {
+        const clockOut = '2012-12-21 03:00:00';
+        const getClockInsUrl = timelogUrl + "/" + employeeID + "/" + clockOut;
+        fetch(getClockInsUrl).then(function(response){ 
+            return response.json();
+        }).then(function(json) {
+            timelogList=json;
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }  
+    catch(Error)
+    {
+        console.log(Error);
+    }
 
     if(timelogList != null)
     {
@@ -163,7 +166,6 @@ function clockOut(){
         })
         .then((response)=>{
             myTimelogs = sendClockOut;
-            console.log(myTimelogs);
         });
 
         var today = new Date();
@@ -186,7 +188,6 @@ function clockOut(){
 }
 
 function redirectManager(i){
-    console.log(i);
     if(i == 1)
     {
         window.location.href = "./employeeInfo.html";

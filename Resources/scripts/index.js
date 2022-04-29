@@ -12,7 +12,6 @@ function logIn(){
         return response.json();
     }).then(function(json) {
         employeeList=json;
-        console.log(employeeList);
         let employee = determineEmpOrManager();
         if(employee == true)
         {
@@ -30,7 +29,6 @@ function logIn(){
 }
 
 function determineEmpOrManager(){
-    console.log("made it to determine");
     let employee = true;
     if (employeeList.managerID == null)
     {
