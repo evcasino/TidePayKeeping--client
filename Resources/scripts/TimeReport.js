@@ -1,5 +1,5 @@
 const userString7 = JSON.parse(sessionStorage.getItem('userID'));
-const timeReportUrl = "https://localhost:5001/tidepaykeeping-api/TimeReport";
+const timeReportUrl = "https://mis321-paykeeping.herokuapp.com/tidepaykeeping-api/TimeReport";
 var timeReportList = [];
 
 function displayEmpID(){

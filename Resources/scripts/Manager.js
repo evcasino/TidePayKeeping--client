@@ -1,7 +1,7 @@
 const userString6 = JSON.parse(sessionStorage.getItem('userID'));
-const timeReportUrl = "https://localhost:5001/tidepaykeeping-api/TimeReport";
-const employeeUrl = "https://localhost:5001/tidepaykeeping-api/Employee";
-const timelogUrl = "https://localhost:5001/tidepaykeeping-api/Timelog";
+const timeReportUrl = "https://mis321-paykeeping.herokuapp.com/tidepaykeeping-api/TimeReport";
+const employeeUrl = "https://mis321-paykeeping.herokuapp.com/tidepaykeeping-api/Employee";
+const timelogUrl = "https://mis321-paykeeping.herokuapp.com/tidepaykeeping-api/Timelog";
 var timeReportList = [];
 var employeeList = [];
 

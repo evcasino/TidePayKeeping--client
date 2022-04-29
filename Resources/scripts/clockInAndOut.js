@@ -1,5 +1,5 @@
-const employeeUrl = "https://localhost:5001/tidepaykeeping-api/Employee"; //api to reach the employee table in database
-const timelogUrl = "https://localhost:5001/tidepaykeeping-api/Timelog";
+const employeeUrl = "https://mis321-paykeeping.herokuapp.com/tidepaykeeping-api/Employee"; //api to reach the employee table in database
+const timelogUrl = "https://mis321-paykeeping.herokuapp.com/tidepaykeeping-api/Timelog";
 var employeeList = [];
 var myEmployees = {};
 var timelogList = [];
